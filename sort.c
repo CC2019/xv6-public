@@ -48,11 +48,16 @@ int main(int argc, char *argv[])
   while((n = read(fd, buf, sizeof(buf))) > 0){
     while(index < n){
       int length = 0;
-      items[num] = malloc(200 * sizeof(char));
-      for(; buf[index] != '\n'; index++)
-        items[num][length++] = buf[index];
-//      printf(1,items[num]);
-//      printf(1,"\n");
+      for(; buf[index] != '\n' && index < n; index++)
+        length++;
+      if(length > 0)
+      {
+        items[num] = malloc((length + 1) * sizeof(char));
+        int start = index - length;
+        int indexOfLine = 0;
+        for(; indexOfLine + start < index; indexOfLine++)
+          items[num][indexOfLine] = buf[indexOfLine+start];
+      }
       num++;
       index++;
     }
