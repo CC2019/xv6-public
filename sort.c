@@ -113,5 +113,5 @@ int main(int argc, char *argv[])
   close(fd);
   if(_o == 1)
     close(wr);
-  return 0;
+  exit();
 }
