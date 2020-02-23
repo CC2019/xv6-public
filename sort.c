@@ -3,7 +3,7 @@
 #include "user.h"
 #include "fcntl.h"
 
-char buf[1024];
+char buf[512];
 
 int main(int argc, char *argv[])
 {
