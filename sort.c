@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
   
   if(fileNum == 0)
     fd = 0;
+  else if(_o)
+    fd = open(files[1], 0);
   else
     fd = open(files[0], 0);
 
@@ -80,10 +82,10 @@ int main(int argc, char *argv[])
   int wr = 0;
   if(_o == 1)
   {
-    wr = open(files[1], O_WRONLY);
+    wr = open(files[0], O_WRONLY);
     if(wr < 0)
     {
-      wr = open(files[1], O_CREATE | O_RDWR);
+      wr = open(files[0], O_CREATE | O_RDWR);
       if(wr < 0)
       {
         printf(1, "can't open file...\n");
