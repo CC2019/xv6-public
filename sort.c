@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
   int index = 0;
   int fd;
   
-  if(fileNum == 0)
+  if(fileNum == 0 || (fileNum == 1 && _0 == 1))
     fd = 0;
   else if(_o)
     fd = open(files[1], 0);
