@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
   int index = 0;
   int fd;
   
-  if(fileNum == 0 || (fileNum == 1 && _0 == 1))
+  if(fileNum == 0 || (fileNum == 1 && _o == 1))
     fd = 0;
   else if(_o)
     fd = open(files[1], 0);
@@ -71,8 +71,18 @@ int main(int argc, char *argv[])
       int num1, num2;
       if(_n == 1)
       {
-	num1 = atoi(items[i]);
-	num2 = atoi(items[j]);
+	if(items[i][0] == '-')
+	{
+	  num1 = -1 * atoi(items[i] + 1);
+	}
+	else
+	  num1 = atoi(items[i]);
+	if(items[j][0] == '-')
+	{
+	  num2 = -1 * atoi(items[j] + 1);
+	}
+	else
+	  num2 = atoi(items[j]);
 	sortNum = num1 - num2;
       }
       if((((strcmp(items[i], items[j]) > 0 && _r == 0) || (strcmp(items[i], items[j]) < 0 && _r == 1)) && _n == 0) || (_n == 1 && ((sortNum > 0 && _r == 0) || (sortNum < 0 && _r == 1))))
