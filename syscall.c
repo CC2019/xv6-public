@@ -98,6 +98,8 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_date(void);
+extern int sys_dup2(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -121,8 +123,10 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_date]    sys_date,
+[SYS_dup2]    sys_dup2,
 };
-
+/*
 static char (*name[]) = {
 [SYS_fork]    "fork",
 [SYS_exit]    "exit",
@@ -145,8 +149,10 @@ static char (*name[]) = {
 [SYS_link]    "link",
 [SYS_mkdir]   "mkdir",
 [SYS_close]   "close",
+[SYS_date]    "date",
+[SYS_dup2]    "dup2",
 };
-
+*/
 void
 syscall(void)
 {
@@ -155,7 +161,7 @@ syscall(void)
   num = proc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     proc->tf->eax = syscalls[num]();
-    cprintf("%s -> %d\n", name[num], proc->tf->eax);
+//    cprintf("%s -> %d\n", name[num], proc->tf->eax);
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             proc->pid, proc->name, num);
