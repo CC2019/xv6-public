@@ -76,7 +76,6 @@ int sys_dup2(void)
   proc->ofile[newfd] = proc->ofile[oldfd];
   return newfd;
 }
-}
 
 int
 sys_read(void)
